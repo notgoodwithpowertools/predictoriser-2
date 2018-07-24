@@ -1,0 +1,22 @@
+.matAddButton {
+  /* background-color: grey; */
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  border-style: none;
+
+
+
+
+}
+
+img.matAddButton:focus {
+    outline: none;
+}
+
+
+button.matAddButton:enabled {
+  background: #5264AE;
+}

@@ -1,0 +1,173 @@
+* { box-sizing:border-box; }
+
+/* label {
+  color:#999;
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all;
+} */
+
+.group {
+  position:relative;
+  margin-bottom:45px;
+}
+
+input {
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+}
+
+input:focus {
+  outline:none;
+}
+
+
+/* input:valid { */
+  /* border-bottom: 1px solid red; */
+  /* top:-20px; */
+  /* font-size:14px; */
+  /* color:#5264AE; */
+  /* color: red; */
+
+/* } */
+
+/* input:not(:placeholder-shown) {
+
+} */
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: red;
+    /* opacity: 1; /* Firefox */
+}
+
+/* active state -------------------------------------------- */
+/* input:focus ~ label, input.used ~ label 		{
+  top:-20px;
+  font-size:14px;
+  color: #4fc24f; */
+  /* font-weight: 500; */
+  /* color:#5264AE; */
+  /* color: red; */
+  /* transition: 1s ease all;
+} */
+input ~ label		{
+  top:-15px;
+  font-size:14px;
+  color: #5264AE;
+  position: absolute;
+  /* font-weight: 500; */
+  /* color:#5264AE; */
+  /* color: red; */
+  transition: 0.7s ease all;
+}
+
+/* Turn the label green on focus */
+input:focus ~ label {
+  color: #4fc24f;
+  transition: 0.7s ease all;
+}
+
+/* #expiry {
+  color: tomato
+}
+#expiry:focus {
+  color: blue;
+}
+
+#expiry.valid {
+  color: green
+} */
+/* input.complete ~ label 		{ */
+  /* top:-20px; */
+  /* font-size:14px; */
+  /* color: #4fc24f; */
+  /* color:#5264AE; */
+  /* color: red; */
+/* } */
+
+/* input:not(focus) ~ label, input.used ~ label 		{ */
+  /* top:-20px; */
+  /* font-size:14px; */
+  /* color: #4fc24f; */
+  /* color:#5264AE; */
+  /* color: red; */
+/* } */
+
+
+
+
+
+
+/* input:focus ~ .bar:before {
+  width:50%;
+}
+
+input:focus ~ .bar:after {
+  width:50%;
+}
+
+input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+} */
+
+/* BOTTOM BARS ================================= */
+.bar 	{
+  position:relative;
+  display:block;
+  width: 300px;
+  height: 0px;
+}
+
+ .bar:after 	{
+  content:'';
+  height:2px;
+  width:150px;
+  bottom:1px;
+  position:absolute;
+  background: #5264AE;
+  transition: 1s ease all;
+  right: 50%;
+
+  /* background: red !important; */
+}
+
+.bar:before 	{
+ content:'';
+ height:2px;
+ width:150px;
+ bottom:1px;
+ position:absolute;
+ /* background: blue; */
+ background: #5264AE;
+ transition: 1s ease all;
+ left: 50%;
+}
+
+input:focus ~ .bar:before, input:focus ~ .bar:after{
+  /* color: #4fc24f !important; */
+  background: #4fc24f !important;
+}
+
+/* input.complete ~ .bar:before, input.complete ~ .bar:after{
+  color: red;
+  background: #4fc24f !important;
+} */
+/*.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%;
+} */
+
+/* ANIMATIONS ================ */
+/* @-webkit-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+} */

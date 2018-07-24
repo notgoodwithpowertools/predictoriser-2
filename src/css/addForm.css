@@ -1,0 +1,76 @@
+.addPredPage {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* border-style: dashed;
+  border-color: purple; */
+  /* margin: 10px; */
+  /* padding: 30px; */
+  /* background-color: yellow; */
+
+}
+
+p.addPredPageItem {
+  /* margin-top: 15px; */
+  /* padding-bottom: 20px; */
+  /* background-color: tomato;
+  border-style: solid;
+  border-color: blue; */
+  margin-bottom: 40px;
+}
+
+.addPredPageItem {
+  /* margin: 10px; */
+  /*padding: 10px; */
+  /* background-color: green; */
+  text-align: center
+  /* border-style: solid;
+  border-color: orange; */
+}
+
+.buttonDiv {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* background-color: blue; */
+  /* align-items: center; */
+  margin-bottom: 40px;
+}
+
+.matButton {
+  background-color: grey;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  /* border-style: solid */
+}
+
+/* let buttonStyle = {
+  backgroundColor : 'blue',
+  height: '50px',
+  width: '50px',
+  borderRadius: '50%',
+  color: 'white',
+  borderStyle: 'solid',
+  display: 'flex',
+  justifyContent: 'centre',
+  alignItems: 'centre'
+
+
+}; */
+.error::before {
+  color: red;
+}
+
+.ta {
+        /* border: solid; */
+        borderWidth: 0 0 1px;
+        border: 1px solid #303F9F;
+        box-shadow: 0 0 5px #719ECE;
+        /* width: 200px; */
+}
