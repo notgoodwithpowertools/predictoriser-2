@@ -43,7 +43,7 @@ input:focus {
 } */
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: red;
+    color: tomato;
     /* opacity: 1; /* Firefox */
 }
 
