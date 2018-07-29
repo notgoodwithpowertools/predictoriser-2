@@ -4,14 +4,15 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 //var {searchTextReducer, showCompletedReducer, todosReducer} = require('../reducers/reducers.jsx');
-import { authReducer, userReducer, msgReducer, predictionsReducer } from '../reducers/reducers.jsx';
+import { authReducer, userReducer, msgReducer, predictionsReducer, votesReducer } from '../reducers/reducers.jsx';
 
 export var configure = (initialState={}) => {
   var reducers = redux.combineReducers({
     auth: authReducer,
     user: userReducer,
     msg: msgReducer,
-    preds: predictionsReducer
+    preds: predictionsReducer,
+    votes: votesReducer
   });
 
   console.log("Window:", window.navigator.userAgent);

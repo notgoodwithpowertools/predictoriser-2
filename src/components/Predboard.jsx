@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import '../css/predList.css';
 import { filterPredsUid } from '../actions/pred-actions.js';
+import { getVotes } from '../actions/vote-actions.js';
 // import { firestoreDB } from '../api/firebase/index.js';
 
 
@@ -16,9 +17,10 @@ export class Predboard extends React.Component {
 
 
   render () {
-    var { preds, sort, userid } = this.props;
+    var { preds, sort, userid, votes } = this.props;
 
     console.log("Preds sort:", sort);
+    console.log("Votes:", votes);
 
     var getPredList = () => {
       if (preds.length > 0) {
@@ -30,10 +32,13 @@ export class Predboard extends React.Component {
         if (filteredPreds.length > 0) {
 
           return filteredPreds.map( (pred, index) => {
-            // console.log("Pred ID:", pred.id + ' Index:', index);
+            console.log("Pred ID:", pred.id + ' Index:', index);
+            // Get Votes for this card
+            let filteredVotes = getVotes(votes, pred.id);
+
 
             return (
-              <PredictionCard key={index} {...pred} />
+              <PredictionCard key={index} {...pred} upvotes={filteredVotes.upvotes} downvotes={filteredVotes.downvotes} />
             )
 
           });
@@ -200,7 +205,8 @@ export default connect(
   (state) => {
     return {
       preds: state.preds,
-      userid: state.user.uid
+      userid: state.user.uid,
+      votes: state.votes
     };
     //return state;
   }

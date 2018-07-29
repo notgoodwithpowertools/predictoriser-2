@@ -27,6 +27,7 @@ var store = require('./store/configureStore.jsx').configure();
 // store.dispatch(authActions.setLoginType(loginType));
 
 store.dispatch(predActions.startLoadPreds());
+store.dispatch(predActions.startLoadVotes());
 
 firebase.auth().onAuthStateChanged( (user) => {
   if (user) {

@@ -95,6 +95,32 @@ export var predictionsReducer = (state = '', action) => {
 
 }
 
+export var votesReducer = (state = [], action) => {
+// export var leaderboardReducer = (state = roundActions.getNextRound(), action) => {
+
+  // console.log("predictionsReducer:action.type:", action.type + ' - ' + action.predictions );
+  switch (action.type) {
+    case 'ADD_VOTES':
+    console.log("Adding Votes...");
+    return [
+      ...state,
+      ...action.votes
+    ];
+    case 'UPDATE_VOTES':
+    console.log("Updating Votes...");
+    return [
+      // ...state,
+      ...action.votes
+    ];
+    // case 'LOGOUT':
+    // return state;
+
+    default:
+    return state;
+  }
+
+}
+
 export var leaderboardReducer = (state = '', action) => {
 // export var leaderboardReducer = (state = roundActions.getNextRound(), action) => {
 

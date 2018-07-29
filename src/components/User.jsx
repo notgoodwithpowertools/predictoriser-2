@@ -21,22 +21,31 @@ export class User extends React.Component {
     var fileExt = aFile.name.split('.').pop()
     console.log("aFile type:", fileExt);
     var userImagesRef = firebaseStorageRef.child('userimages/' + user.firstname + '.' + fileExt);
+    console.log("reference:", userImagesRef);
     var task = userImagesRef.put(aFile);
     task.on('state_changed',
       function progress (snapshot) {
-        // var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        // console.log("%:", percentage);
-        // console.log("In progress");
+        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log("%:", percentage);
+        console.log("In progress");
 
       },
       function error () {
-        console.log("Error");
+        console.log("Error with file upload!");
       },
       function complete () {
         console.log("Upload complete");
-        var downloadURL = task.snapshot.downloadURL;
-        console.log("downloadURL:", downloadURL);
-        setUserImgDB(user, downloadURL);
+        // var downloadURL = task.snapshot.downloadURL;
+        // var downloadURL = task.snapshot.getDownloadURL();
+        // userImagesRef.getDownloadURL().then( (downloadURL) => {
+        //   console.log("downloadURL:", downloadURL);
+        // });
+        // console.log("downloadURL:", downloadURL);
+        task.snapshot.ref.getDownloadURL().then( (downloadURL) => {
+          console.log("downloadURL:", downloadURL);
+          setUserImgDB(user, downloadURL);
+        })
+
 
       }
     );

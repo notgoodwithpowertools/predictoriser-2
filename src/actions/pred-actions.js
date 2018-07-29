@@ -8,6 +8,15 @@ export var updatePreds = (preds) => {
   }
 };
 
+export var updateVotes = (votes) => {
+  console.log("updateVotes...", votes);
+  return {
+    type: 'UPDATE_VOTES',
+    votes: votes
+  }
+};
+
+
 export var filterPredsUid = (preds, uid) => {
 
   console.log("Filtering preds for UID:", uid);
@@ -34,7 +43,14 @@ export var deletePred = (id) => {
 
   console.log("Deleting pred with id:", id);
   firestoreDB.collection("predicts").doc(id).delete().then(() => {
-    console.log("Document successfully deleted!");
+    console.log("Document successfully deleted! Check to see if there are any votes and delete them...");
+    firestoreDB.collection("votes").doc(id).delete().then(() => {
+      console.log("Votes deleted!");
+    }).catch(function(error) {
+      console.error("Error removing votes: ", error);
+    });
+      
+
   }).catch(function(error) {
     console.error("Error removing document: ", error);
   });
@@ -64,8 +80,6 @@ export var setPred = (uid, short, long) => {
 
 export var addPred = (user, short, aDate) => {
 
-
-
   let datestamp = new Date(aDate);
   console.log("Parsed datestamp:", datestamp);
 
@@ -75,7 +89,9 @@ export var addPred = (user, short, aDate) => {
     complete: 0,
     short: short,
     datestamp: fieldValue.serverTimestamp(),
-    expiry: datestamp
+    expiry: datestamp,
+    upvotes: [],
+    downvotes: []
     // long: long
   }).then(ref => {
     console.log('Added new document with ID: ', ref.id);
@@ -140,7 +156,7 @@ export var startLoadPreds = () => {
       dispatch(loadTeams(parsedTeams));
     });
   */
-  console.log('parsed Preds:'/*, parsedPlayers*/);
+  // console.log('parsed Preds:'/*, parsedPlayers*/);
   }
 }
 /*
@@ -175,3 +191,35 @@ export var startAddPlayers2 = () => {
   };
 };
 */
+
+
+export var startLoadVotes = () => {
+  console.log('startLoadVotes...');
+  return (dispatch, getState) => {
+
+    var votesCollection = firestoreDB.collection('votes');
+
+    votesCollection.onSnapshot( {includeMetadataChanges: true}, (docSnapshot) => {
+      // console.log('Received predictsCollection snapshot:', docSnapshot);
+      votesCollection.get().then( (querySnapshot) => {
+        // translate returned objects to an array
+        var parsedVotes = [];
+
+        querySnapshot.forEach((doc) => {
+
+          parsedVotes.push({
+            id: doc.id,
+            ...doc.data()
+          })
+        });
+        // console.log('parsedVotes:', parsedVotes);
+        dispatch(updateVotes(parsedVotes));
+
+      });
+
+    // ...
+    }, err => {
+      console.log(`Encountered error observing votesCollection: ${err}`);
+    });
+  }
+}
