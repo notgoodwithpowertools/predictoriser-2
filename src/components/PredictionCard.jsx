@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 
 import Image from './Image.jsx';
 
-import '../css/card.css';
-import '../css/votePanel.css';
+// import '../css/card.css';
+import '../css/predcard.css';
+// import '../css/votePanel.css';
 
 import { getDateMDY } from '../api/datefuncs.js';
 import { deletePred } from '../actions/pred-actions.js';
@@ -70,6 +71,7 @@ export class PredictionCard extends React.Component {
   render () {
 
     var info = this.props;
+    // console.log("Status:", info.complete);
     let { upvotes, downvotes } = this.props;
     // console.log("upvotes:", upvotes);
     // console.log("downvotes:", downvotes);
@@ -77,6 +79,29 @@ export class PredictionCard extends React.Component {
     // console.log("Uid:", info.user.uid);
     // console.log("Expiry:", getDateMDY(info.expiry.toDate()));
     var initial = String(info.uname).charAt(0).toUpperCase();
+
+    var flag = flagY;
+    let statusText = 'In Progress';
+    let statusColor = 'yellow';
+
+    switch (info.complete) {
+      case 1: {
+        flag = flagG;
+        statusText = 'Complete';
+        statusColor = 'green';
+        break;
+      }
+      case -1: {
+        flag = flagR;
+        statusText = 'Expired';
+        statusColor = 'red';
+        break;
+      }
+      default: {
+        flag = flagY;
+      }
+
+    }
     // var aDate = info.datestamp;
     // console.log("Date", getDay(aDate.toDate()));
 
@@ -102,7 +127,7 @@ export class PredictionCard extends React.Component {
       if (info.uid === info.user.uid) {
         if (this.state.deleteConfirm) {
           return (
-            <div className='delete deleteCancel'>
+            <div className='delete cancel'>
               <span onClick={ this.confirmDelete } ><Image src={trash} height={25} width={'auto !important'}/>Confirm</span>
               <span onClick={ this.clickDelete } ><Image src={xCross} height={25} width={'auto !important'}/>Cancel</span>
             </div>
@@ -121,61 +146,65 @@ export class PredictionCard extends React.Component {
     }
 
     var getFlag = () => {
-      var flag = flagY;
-      switch (info.complete) {
-        case 1:
-          flag = flagG;
-          break;
-        case -1:
-          flag = flagR;
-          break;
-        default:
-          flag = flagY;
 
-      }
       return (
-        <span className=''><Image src={flag} height={25} width={'auto !important'}/></span>
+        <span className=''><Image src={flag} height={25} width={'auto !important'}/>{statusText}</span>
       )
     }
 
     var status = {
-      backgroundColor: 'yellow',
-      width: '20px'
+      backgroundColor: statusColor,
+      width: '10px'
     }
 
     var getDetail = () => {
       if (this.state.showDetails) {
         return (
-          <div className="content">
 
-            <div>
-              <p>Made by {info.uname}</p>
+            <div className='card-content'>
+              <span style={status}></span>
+              <div className='card-content-body'>
+                <hr width="75%"/>
+                <h1 className='callText'>Made by {info.uname}</h1>
+                <p className='callText'>...on { getDateMDY(info.datestamp.toDate()) }</p>
+                <p className='callText'>...expiry { getDateMDY(info.expiry.toDate()) }</p>
+                <div className='statusPanel'>
+                  { getFlag() }
+
+                  <div className='statusPanelItem'>
+                  <div className='likePanel'>
+
+                      <div className='likePanelItem' onClick={ getUpVoteAction() }><Image src={upvote} height={25} width={25}/>{upvotes.length}</div>
+                      <div className='likePanelItem' onClick={ getDownVoteAction() }><Image src={downvote} height={25} width={25}/>{downvotes.length}</div>
+
+                  </div>
+                  </div>
+                </div>
+                { getDeleteButton() }
+
+              </div>
+
             </div>
 
-            <div className="contentDate">
-              <p>...on { getDateMDY(info.datestamp.toDate()) }</p><br/>
-              <p className='expiryInfo'>...expires { getDateMDY(info.expiry.toDate()) }</p>
-            </div>
-            { getFlag() }
-            <div className='votePanel'>
-
-              <span className='' onClick={ getUpVoteAction() } ><Image src={upvote} height={25} width={25}/>{upvotes.length}</span>
-              <span className='' onClick={ getDownVoteAction() } ><Image src={downvote} height={25} width={25}/>{downvotes.length}</span>
-
-            </div>
-            { getDeleteButton() }
-          </div>
         )
       }
     } // end -- getDetail
 
     return (
 
-      <div className='card'>
+      <div className='outer'>
 
 
         {/* listInfo() */}
-        <div className="header" onClick={ this.clickCard }><span className='initials'>{initial}</span><div className='infoPanel'><span className='info'>{ info.short }</span></div></div>
+        <div className='card-header' onClick={ this.clickCard }>
+
+          <span style={status}></span>
+          <div className="card-header-content">
+            <span className='initial'>{initial}</span><span className='card-header-content'>{ info.short }</span>
+          </div>
+
+        </div>
+
         { getDetail() }
 
       </div>

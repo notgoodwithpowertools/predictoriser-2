@@ -1,12 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import '../css/predList.css';
+// import '../css/card.css';
+// import '../css/votePanel.css';
 import { filterPredsUid } from '../actions/pred-actions.js';
 import { getVotes } from '../actions/vote-actions.js';
-// import { firestoreDB } from '../api/firebase/index.js';
-
 
 import PredictionCard from './PredictionCard.jsx';
+// import Image from './Image.jsx';
+
 // import Button from '@material-ui/core/Button';
 
 export class Predboard extends React.Component {
@@ -19,8 +21,8 @@ export class Predboard extends React.Component {
   render () {
     var { preds, sort, userid, votes } = this.props;
 
-    console.log("Preds sort:", sort);
-    console.log("Votes:", votes);
+    // console.log("Preds sort:", sort);
+    // console.log("Votes:", votes);
 
     var getPredList = () => {
       if (preds.length > 0) {
@@ -32,7 +34,7 @@ export class Predboard extends React.Component {
         if (filteredPreds.length > 0) {
 
           return filteredPreds.map( (pred, index) => {
-            console.log("Pred ID:", pred.id + ' Index:', index);
+            // console.log("Pred ID:", pred.id + ' Index:', index);
             // Get Votes for this card
             let filteredVotes = getVotes(votes, pred.id);
 
@@ -56,6 +58,49 @@ export class Predboard extends React.Component {
 
     return (
       <div className="predList">
+
+        {/*<div className='outer'>
+          <div className='newcard-header'>
+
+            <span className="status"></span>
+            <div className="newcard-header-content">
+              <span className='initial'>A</span><span className='newcard-header-content'>hello - this is a predication with some long txt</span>
+            </div>
+
+          </div>
+          <div className='newcard-content'>
+            <span className="status"></span>
+            <div className='newcard-content-body'>
+              <hr width="75%"/>
+              <h1 className='callText'>Made by AA</h1>
+              <p className='callText'>...on December 31, 2018</p>
+              <p className='callText'>...expiry December 31, 2028</p>
+              <div className='statusPanel'>
+                <div className='statusPanelItem'><Image src={flag} height={25} width={25}/>In progress</div>
+
+                <div className='statusPanelItem'>
+                <div className='likePanel'>
+
+                    <div className='likePanelItem'><Image src={upvote} height={25} width={25}/>2</div>
+                    <div className='likePanelItem'><Image src={downvote} height={25} width={25}/>2</div>
+
+                </div>
+                </div>
+              </div>
+              <div className='newcard-delete newcard-cancel'>
+                <span><Image src={trash} height={25} width={'auto !important'}/>Confirm</span>
+                <span><Image src={xCross} height={25} width={'auto !important'}/>Cancel</span>
+              </div>
+
+            </div>
+
+
+
+
+          </div>
+
+        </div> */}
+
         { getPredList() }
       </div>
 

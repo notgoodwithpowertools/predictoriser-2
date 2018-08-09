@@ -1,0 +1,154 @@
+.outer {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  min-width: 200px;
+  margin: 20px;
+}
+
+.outer:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+}
+
+.card-header {
+
+  /* padding: 7px;
+  text-align: center; */
+  display: flex;
+  /* background-color: blue; */
+  /* justify-content: center; */
+  /* align-items: center;
+  flex-direction: column;
+  font-family: Roboto; */
+  /* justify-content: flex-start; */
+  /* font-family: Roboto; */
+}
+
+.card-content {
+  display: flex;
+  /* background-color: brown; */
+  /* padding-bottom: 20px; */
+}
+
+.status {
+  /* background-color: green; */
+  min-width: 12px;
+  /* min-height: 40px; */
+}
+
+.card-header-content {
+  display: flex;
+  /* padding: 5px; */
+  padding: 5px;
+  /* background-color: tomato; */
+  justify-content: center;
+  align-items: center;
+  /* color: blue; */
+}
+
+.initial {
+  margin: 10px;
+  min-width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border-color: #282C34;
+  color: #282C34;
+  border-style: solid;
+  border-width: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* display: block;
+  margin-right: 20px; */
+  /* align-self: flex-start; */
+}
+
+.callText {
+    font-size: smaller;
+    color: #777575;
+    /* font-style: italic; */
+    margin-bottom: 0px;
+    padding: 15px;
+    /* background-color: purple */
+
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 5px; */
+}
+
+.card-content-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: pink; */
+  flex-grow: 1;
+
+  /* overflow: auto; */
+}
+
+/* .flag {
+
+  position:absolute;
+  left: 75px;
+  top:  290px
+
+} */
+
+.statusPanel {
+  /* width: inherit; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* background-color: green; */
+  margin: 10px;
+  padding: 10px;
+  /* background-color: yellow; */
+  font-size: smaller;
+  /* flex: 1; */
+  width: 100%;
+}
+
+.statusPanelItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: blue; */
+  /* width: 100% */
+
+}
+
+
+.likePanel {
+  display: flex;
+  flex-direction: row;
+}
+
+.likePanelItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.delete {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  min-width: 180px;
+  /* transition: all 2s; */
+  font-size: smaller;
+  /* background: red; */
+}
+
+.delete.cancel {
+  /* padding: 5px; */
+  /* margin: 20px; */
+  /* display: flex; */
+  justify-content: space-between;
+  /* min-width: 181px; */
+  /* transition: all 1.5s; */
+  /* background: red; */
+}

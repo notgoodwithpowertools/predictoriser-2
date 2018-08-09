@@ -1,8 +1,0 @@
-.votePanel {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  /* background-color: green; */
-  margin: 10px;
-  padding: 10px;
-}
