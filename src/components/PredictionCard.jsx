@@ -153,9 +153,10 @@ export class PredictionCard extends React.Component {
     }
 
     var status = {
-      backgroundColor: statusColor,
-      width: '10px'
-    }
+      "backgroundColor": statusColor,
+      "minWidth": "10px"
+    };
+
 
     var getDetail = () => {
       if (this.state.showDetails) {
